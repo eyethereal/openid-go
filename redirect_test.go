@@ -33,7 +33,7 @@ func TestBuildRedirectUrl(t *testing.T) {
 }
 
 func expectURL(t *testing.T, opEndpoint, opLocalID, claimedID, returnTo, realm, expected string) {
-	url, err := buildRedirectURL(opEndpoint, opLocalID, claimedID, returnTo, realm)
+	url, err := buildRedirectURL(opEndpoint, opLocalID, claimedID, returnTo, realm, nil)
 	if err != nil {
 		t.Errorf("Unexpected error: %s", err)
 	}
@@ -60,7 +60,7 @@ func TestRedirectWithDiscovery(t *testing.T) {
 }
 
 func expectRedirect(t *testing.T, uri, callback, realm, exRedirect string, exErr bool) {
-	redirect, err := redirectURL(uri, callback, realm, testGetter)
+	redirect, err := redirectURL(uri, callback, realm, testGetter, nil)
 	if (err != nil) != exErr {
 		t.Errorf("Unexpected error: '%s'", err)
 		return
